@@ -2,8 +2,12 @@
 
 namespace Domain\File\Models;
 
+use Domain\FileType\Models\FileType;
+use Domain\Tag\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class File extends Model
 {
@@ -18,4 +22,14 @@ class File extends Model
         'type_id',
         'size',
     ];
+
+    public function file_type(): BelongsTo
+    {
+        return $this->belongsTo(FileType::class, 'type_id', 'id');
+    }
+
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany(Tag::class, 'file_tag', 'file_id', 'tag_id');
+    }
 }
