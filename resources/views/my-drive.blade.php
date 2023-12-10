@@ -1,58 +1,54 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('My Drive') }}
-        </h2>
+        <div class="flex items-center">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __('My Drive') }}
+            </h2>
+            @if($folder)
+                <a href="{{ route('folders.show', ['folder' => $folder->parent_id]) }}" class="back-button">Back</a>
+            @endif
+        </div>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    @if(count($files) == 0 && count($folders) == 0)
-                        <div>
-                            <p class="text-center">{{ __("You don't have any files or folders yet.") }}</p>
-                        </div>
-                    @else
-                        <table class="table-auto w-full">
-                            <thead>
-                            <tr>
-                                <th class="px-4 py-2">{{ __("Name") }}</th>
-                                <th class="px-4 py-2">{{ __("Type") }}</th>
-                                <th class="px-4 py-2">{{ __("Size") }}</th>
-                                <th class="px-4 py-2">{{ __("Last Modified") }}</th>
-                                <th class="px-4 py-2">{{ __("Created") }}</th>
-                                <th class="px-4 py-2">{{ __("Actions") }}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($files as $file)
-                                    <tr>
-                                        <td class="border px-4 py-2">{{ $file->name . $file->file_type->type }}</td>
-                                        <td class="border px-4 py-2">{{ __($file->file_type->display_name) }}</td>
-                                        <td class="border px-4 py-2">{{ \Illuminate\Support\Number::fileSize($file->size) }}</td>
-                                        <td class="border px-4 py-2">{{ $file->updated_at ?? '—' }}</td>
-                                        <td class="border px-4 py-2">{{ $file->created_at }}</td>
-                                        <td class="border px-4 py-2">{{ __('In progress') }}</td>
-
-                                    </tr>
-                                @endforeach
-                                @foreach($folders as $folder)
-                                    <tr>
-                                        <td class="border px-4 py-2">{{ $folder->name }}</td>
-                                        <td class="border px-4 py-2">{{ __('Folder') }}</td>
-                                        <td class="border px-4 py-2"></td>
-                                        <td class="border px-4 py-2">{{ $folder->updated_at }}</td>
-                                        <td class="border px-4 py-2">{{ $folder->created_at }}</td>
-                                        <td class="border px-4 py-2">{{ __('In progress') }}</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    @endif
-
+                    <x-table-component :rows="$rows" :columns="$columns" :noDataMessage="'There is no files.'">
+                    </x-table-component>
                 </div>
             </div>
         </div>
     </div>
 </x-app-layout>
+
+<style>
+    .back-button {
+        margin-left: 1rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 2rem;
+        padding: 0 1rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        line-height: 1.25rem;
+        color: #fff;
+        background-color: #3b82f6;
+        border-radius: 0.375rem;
+        transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        text-decoration: none;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    }
+
+    .back-button:hover {
+        background-color: #2563eb;
+        color: #fff;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    }
+
+    .flex.items-center {
+        align-items: center;
+        justify-content: flex-start;
+    }
+</style>

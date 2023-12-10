@@ -17,8 +17,13 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('my-drive')" :active="request()->routeIs('my-drive')">
-                        {{ __('My drive') }}
+                    <x-nav-link :href="route('folders.show')" :active="request()->routeIs('folders.show')">
+                        {{ __('My Drive') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('dashboard')" >
+                        {{ __('Shared Files') }}
                     </x-nav-link>
                 </div>
             </div>

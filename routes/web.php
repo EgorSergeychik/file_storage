@@ -25,10 +25,22 @@ Route::get('/dashboard', function () {
 Route::group(
     [
         'prefix' => 'folders',
+        'as' => 'folders.',
         'middleware' => ['auth', 'verified'],
     ],
     function () {
-        Route::get('/', \Domain\Folder\Controllers\GetMainDirectoryController::class)->name('my-drive');
+        Route::get('/{folder?}', \Domain\Folder\Controllers\GetFolderController::class)->name('show');
+    }
+);
+
+Route::group(
+    [
+        'prefix' => 'files',
+        'as' => 'files.',
+        'middleware' => ['auth', 'verified'],
+    ],
+    function () {
+        Route::get('/{file}', function () {})->name('show');
     }
 );
 
