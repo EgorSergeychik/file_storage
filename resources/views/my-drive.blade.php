@@ -10,6 +10,16 @@
         </div>
     </x-slot>
 
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div class="error-popup">
+                <span class="close-error">&times;</span>
+                <strong>Error!</strong>
+                <p>{{ $error }}</p>
+            </div>
+        @endforeach
+    @endif
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">

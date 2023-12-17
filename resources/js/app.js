@@ -25,3 +25,21 @@ window.closeModal = function() {
     document.getElementById('deleteModal').classList.add('hidden');
     document.getElementById('editModal').classList.add('hidden');
 }
+
+window.onload = function() {
+    let popups = document.querySelectorAll('.error-popup');
+    let closeButtons = document.querySelectorAll('.close-error');
+
+    popups.forEach((popup, index) => {
+        popup.style.bottom = `${index * 70 + 20}px`;
+        setTimeout(() => {
+            popup.classList.add('show');
+        }, index * 500);
+    });
+
+    closeButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            popups[index].classList.remove('show');
+        });
+    });
+};
