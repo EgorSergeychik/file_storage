@@ -1,12 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex items-center">
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('My Drive') }}
-            </h2>
-            @if($folder)
-                <a href="{{ route('folders.show', ['folder' => $folder->parent_id]) }}" class="secondary-button">{{ __('Back') }}</a>
-            @endif
+        <div class="flex justify-between">
+            <div class="flex items-center">
+                <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                    {{ __('My Drive') }}
+                </h2>
+                @if($folder)
+                    <a href="{{ route('folders.show', ['folder' => $folder->parent_id]) }}" class="secondary-button">{{ __('Back') }}</a>
+                @endif
+            </div>
         </div>
     </x-slot>
 
@@ -82,6 +84,14 @@
 </x-app-layout>
 
 @include('modals.delete-modal')
+
+<button id="uploadButton" class="upload-button">+</button>
+<form action="{{ route('files.upload') }}" method="POST" enctype="multipart/form-data" class="upload-form">
+    @csrf
+    <input type="file" name="file" required class="input-file">
+    <input type="hidden" name="folder_id" value="{{ $folder->id ?? null }}">
+    <button type="submit" class="success-button">{{ __('Upload') }}</button>
+</form>
 
 <!-- Модальное окно для изменения -->
 {{--<div id="editModal" class="modal hidden">--}}

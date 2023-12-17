@@ -34,7 +34,7 @@ window.onload = function() {
 
     let displayPopups = function(popups, closeButtons) {
         popups.forEach((popup, index) => {
-            popup.style.bottom = `${index * 70 + 20}px`; // Position each popup
+            popup.style.top = `${index * 70 + 20}px`; // Position each popup
             setTimeout(() => {
                 popup.classList.add('show'); // Show the popup
             }, index * 500); // Delay before showing each popup
@@ -50,3 +50,12 @@ window.onload = function() {
     displayPopups(errorPopups, closeErrorButtons);
     displayPopups(successPopups, closeSuccessButtons);
 };
+
+document.getElementById('uploadButton').addEventListener('click', function() {
+    var form = document.querySelector('.upload-form');
+    if (form.style.display === 'block') {
+        form.style.display = 'none';
+    } else {
+        form.style.display = 'block';
+    }
+});

@@ -45,7 +45,9 @@ Route::group(
     ],
     function () {
         Route::get('/{file}', function () {})->name('show');
-        Route::delete('/{file}', \Domain\File\Controllers\DeleteFileController::class)->name('destroy');
+        Route::delete('/{file}', \Domain\File\Controllers\DeleteFileController::class)->name('destroy')
+            ->can('delete', 'file');
+        Route::post('/files/upload', \Domain\File\Controllers\UploadFileController::class)->name('upload');
     }
 );
 
