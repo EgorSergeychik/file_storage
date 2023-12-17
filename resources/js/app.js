@@ -27,19 +27,26 @@ window.closeModal = function() {
 }
 
 window.onload = function() {
-    let popups = document.querySelectorAll('.error-popup');
-    let closeButtons = document.querySelectorAll('.close-error');
+    let errorPopups = document.querySelectorAll('.error-popup');
+    let successPopups = document.querySelectorAll('.success-popup');
+    let closeErrorButtons = document.querySelectorAll('.close-error');
+    let closeSuccessButtons = document.querySelectorAll('.close-success');
 
-    popups.forEach((popup, index) => {
-        popup.style.bottom = `${index * 70 + 20}px`;
-        setTimeout(() => {
-            popup.classList.add('show');
-        }, index * 500);
-    });
-
-    closeButtons.forEach((button, index) => {
-        button.addEventListener('click', () => {
-            popups[index].classList.remove('show');
+    let displayPopups = function(popups, closeButtons) {
+        popups.forEach((popup, index) => {
+            popup.style.bottom = `${index * 70 + 20}px`; // Position each popup
+            setTimeout(() => {
+                popup.classList.add('show'); // Show the popup
+            }, index * 500); // Delay before showing each popup
         });
-    });
+
+        closeButtons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                popups[index].classList.remove('show'); // Close the popup
+            });
+        });
+    };
+
+    displayPopups(errorPopups, closeErrorButtons);
+    displayPopups(successPopups, closeSuccessButtons);
 };

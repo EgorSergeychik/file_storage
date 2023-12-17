@@ -120,3 +120,28 @@
 .error-popup.show {
     opacity: 1;
 }
+
+.success-popup {
+    position: fixed;
+    right: 20px;
+    z-index: 1000;
+    width: 300px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.success-popup .close-success {
+    float: right;
+    color: white;
+    cursor: pointer;
+}
+
+.success-popup.show {
+    opacity: 1;
+}

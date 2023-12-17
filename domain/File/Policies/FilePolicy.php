@@ -1,11 +1,11 @@
 <?php
 
-namespace Domain\Folder\Policies;
+namespace Domain\File\Policies;
 
-use Domain\Folder\Models\Folder;
+use Domain\File\Models\File;
 use Domain\User\Models\User;
 
-class FolderPolicy
+class FilePolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -18,14 +18,9 @@ class FolderPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, ?Folder $folder): bool
+    public function view(User $user, File $file): bool
     {
-
-        if (!$folder) {
-            return true;
-        }
-
-        return $user->id === $folder->user_id;
+        //
     }
 
     /**
@@ -39,7 +34,7 @@ class FolderPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Folder $folder): bool
+    public function update(User $user, File $file): bool
     {
         //
     }
@@ -47,15 +42,15 @@ class FolderPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Folder $folder): bool
+    public function delete(User $user, File $file): bool
     {
-        return $user->id === $folder->user_id;
+        return $user->id === $file->user_id;
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Folder $folder): bool
+    public function restore(User $user, File $file): bool
     {
         //
     }
@@ -63,7 +58,7 @@ class FolderPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Folder $folder): bool
+    public function forceDelete(User $user, File $file): bool
     {
         //
     }

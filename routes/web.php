@@ -32,7 +32,8 @@ Route::group(
     function () {
         Route::get('/{folder?}', \Domain\Folder\Controllers\GetFolderController::class)->name('show')
             ->can('view', [Folder::class, 'folder']);
-        Route::delete('/{folder}', \Domain\Folder\Controllers\DeleteFolderController::class)->name('destroy');
+        Route::delete('/{folder}', \Domain\Folder\Controllers\DeleteFolderController::class)->name('destroy')
+            ->can('delete', 'folder');
     }
 );
 
@@ -44,7 +45,7 @@ Route::group(
     ],
     function () {
         Route::get('/{file}', function () {})->name('show');
-        Route::delete('/{file}', function () {})->name('destroy');
+        Route::delete('/{file}', \Domain\File\Controllers\DeleteFileController::class)->name('destroy');
     }
 );
 

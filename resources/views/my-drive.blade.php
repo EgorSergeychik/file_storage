@@ -14,10 +14,18 @@
         @foreach ($errors->all() as $error)
             <div class="error-popup">
                 <span class="close-error">&times;</span>
-                <strong>Error!</strong>
+                <strong>{{ __('Error!') }}</strong>
                 <p>{{ $error }}</p>
             </div>
         @endforeach
+    @endif
+
+    @if (session('success'))
+        <div class="success-popup">
+            <span class="close-success">&times;</span>
+            <strong>{{ __('Success!') }}</strong>
+            <p>{{ session('success') }}</p>
+        </div>
     @endif
 
     <div class="py-12">

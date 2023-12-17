@@ -25,6 +25,6 @@ class DeleteFolderController extends Controller
             return redirect()->back()->withErrors(['error' => 'Something went wrong']);
         }
 
-        return redirect()->back();
+        return redirect()->back()->with(['success' => 'Folder deleted successfully']);
     }
 }
