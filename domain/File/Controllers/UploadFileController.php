@@ -3,28 +3,27 @@
 namespace Domain\File\Controllers;
 
 use App\Http\Controllers\Controller;
-use Domain\File\Actions\DeleteFileAction;
-use Domain\File\DTO\DeleteFileData;
-use Domain\File\Models\File;
-use Illuminate\Foundation\Http\FormRequest;
+use Domain\File\Actions\UploadFileAction;
+use Domain\File\DTO\UploadFileData;
+use Domain\File\Requests\UploadFileRequest;
 
 class UploadFileController extends Controller
 {
     public function __construct(
-        private readonly DeleteFileAction $deleteFileAction,
+        private readonly UploadFileAction $uploadFileAction,
     ) {
     }
 
-    public function __invoke(FormRequest $request, File $file)
+    public function __invoke(UploadFileRequest $request)
     {
-        $data = DeleteFileData::fromRequest($request);
+        $data = UploadFileData::fromRequest($request);
 
-        $is_deleted = ($this->deleteFileAction)($data);
+        $is_uploaded = ($this->uploadFileAction)($data);
 
-        if (!$is_deleted) {
+        if (!$is_uploaded) {
             return redirect()->back()->withErrors(['error' => 'Something went wrong']);
         }
 
-        return redirect()->back()->with(['success' => 'File deleted successfully']);
+        return redirect()->back()->with(['success' => 'File uploaded successfully']);
     }
 }

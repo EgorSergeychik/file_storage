@@ -39,7 +39,7 @@ class GetFolderAction
         foreach ($files as $file) {
             $rows[] = [
                 'id' => $file->id,
-                'name' => $file->name . $file->file_type->type,
+                'name' => $file->name . '.' . $file->file_type->type,
                 'type' => $file->file_type->display_name,
                 'size' => Number::fileSize($file->size),
                 'created_at' => $file->created_at ?? '—',
