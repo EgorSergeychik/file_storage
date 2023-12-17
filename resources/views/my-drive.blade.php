@@ -27,6 +27,12 @@
                         @forelse($rows as $row)
                             <tr>
                                 @foreach($row as $key => $cell)
+                                    @if($key == 'name' and $row['type'] == 'Folder')
+                                        <td class="border px-4 py-2">
+                                            <a href="{{ route('folders.show', ['folder' => $row['id']]) }}" class="folder-name">📁 {{ $cell }}</a>
+                                        </td>
+                                        @continue
+                                    @endif
                                     @if($key != 'id')
                                         <td class="border px-4 py-2">{{ $cell }}</td>
                                     @endif

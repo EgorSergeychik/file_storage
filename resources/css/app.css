@@ -86,3 +86,12 @@
     align-items: center;
     flex-direction: column;
 }
+
+.folder-name {
+    transition: color 0.3s ease;
+}
+
+.folder-name:hover {
+    color: #7b7272;
+    text-decoration: underline;
+}
