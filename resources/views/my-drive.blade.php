@@ -39,12 +39,14 @@
                                 @endforeach
                                 <td class="border px-4 py-2">
                                     @if($row['type'] == 'Folder')
-{{--                                        <a href="{{ route('folders.show', ['folder' => $row['id']]) }}" class="secondary-button">Open</a>--}}
-                                        <button onclick="openDeleteModal(event, '{{ route('dashboard') }}', '{{ $row['name'] }}')" class="danger-button">Delete</button>
-                                        <button onclick="openEditModal(event, '{{ route('dashboard') }}', '{{ $row['name'] }}')" class="secondary-button">Edit</button>
+                                        <button onclick="openDeleteModal(event, '{{ route('folders.destroy', ['folder' => $row['id']]) }}', '{{ $row['name'] }}')" class="danger-button">
+                                            {{ __('Delete') }}</button>
+                                        <button onclick="openEditModal(event, '{{ route('dashboard') }}', '{{ $row['name'] }}')" class="secondary-button">{{ __('Edit') }}</button>
                                     @else
-                                        <button onclick="openDeleteModal(event, '{{ route('dashboard') }}')" class="danger-button">Delete</button>
-                                        <button onclick="openEditModal(event, '{{ route('dashboard') }}', '{{ $row['name'] }}')" class="secondary-button">Edit</button>
+                                        <button onclick="openDeleteModal(event, '{{ route('files.destroy', ['file' => $row['id']]) }}', '{{ $row['name'] }}')" class="danger-button">
+                                            {{ __('Delete') }}</button>
+                                        <button onclick="openEditModal(event, '{{ route('dashboard') }}', '{{ $row['name'] }}')" class="secondary-button">{{ __('Edit') }}</button>
+                                        <button class="success-button">{{ __('Download') }}</button>
                                     @endif
                                 </td>
                             </tr>
