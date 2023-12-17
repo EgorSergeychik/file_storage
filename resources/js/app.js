@@ -5,3 +5,23 @@ import Alpine from 'alpinejs';
 window.Alpine = Alpine;
 
 Alpine.start();
+
+window.openDeleteModal = function(event, deleteUrl, name) {
+    event.preventDefault();
+    document.getElementById('deleteModal').querySelector('form').action = deleteUrl;
+    document.getElementById('deleteName').textContent = name;
+    document.getElementById('deleteModal').classList.remove('hidden');
+}
+
+window.openEditModal = function(event, editUrl, fileName) {
+    event.preventDefault();
+    const editModal = document.getElementById('editModal');
+    editModal.querySelector('form').action = editUrl;
+    editModal.querySelector('input[name="name"]').value = fileName;
+    editModal.classList.remove('hidden');
+}
+
+window.closeModal = function() {
+    document.getElementById('deleteModal').classList.add('hidden');
+    document.getElementById('editModal').classList.add('hidden');
+}

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use Domain\Folder\Models\Folder;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,7 +30,8 @@ Route::group(
         'middleware' => ['auth', 'verified'],
     ],
     function () {
-        Route::get('/{folder?}', \Domain\Folder\Controllers\GetFolderController::class)->name('show');
+        Route::get('/{folder?}', \Domain\Folder\Controllers\GetFolderController::class)->name('show')
+            ->can('view', [Folder::class, 'folder']);
     }
 );
 
@@ -41,6 +43,7 @@ Route::group(
     ],
     function () {
         Route::get('/{file}', function () {})->name('show');
+        Route::delete('/{file}', function () {})->name('destroy');
     }
 );
 
