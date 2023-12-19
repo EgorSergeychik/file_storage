@@ -84,12 +84,19 @@ document.addEventListener('DOMContentLoaded', function () {
             switch (action) {
                 case 'upload_file':
                     form.style.display = (form.style.display === 'block') ? 'none' : 'block';
+                    calculateAndSetFormPosition(form);
 
                     break;
                 case 'new_folder':
                     alert('clicked');
                     break;
             }
+        }
+
+        function calculateAndSetFormPosition(form) {
+            var commandMenuRect = commandMenu.getBoundingClientRect();
+            form.style.left = (commandMenuRect.x / commandMenuRect.left) * 10% + 'px';
+            form.style.top = (commandMenuRect.y / commandMenuRect.top) * 10% + 'px';
         }
     }
 });
