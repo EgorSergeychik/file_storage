@@ -90,7 +90,7 @@
     @csrf
     <input type="file" name="file" required class="input-file">
     <input type="hidden" name="folder_id" value="{{ $folder->id ?? null }}">
-    <button type="submit" class="success-button">{{ __('Upload') }}</button>
+    <button type="submit" class="button success">{{ __('Upload') }}</button>
 </form>
 
 <!-- Модальное окно для изменения -->
