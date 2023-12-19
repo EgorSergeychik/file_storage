@@ -48,6 +48,8 @@ Route::group(
         Route::delete('/{file}', \Domain\File\Controllers\DeleteFileController::class)->name('destroy')
             ->can('delete', 'file');
         Route::post('/files/upload', \Domain\File\Controllers\UploadFileController::class)->name('upload');
+        Route::get('/{file}/download', \Domain\File\Controllers\DownloadFileController::class)->name('download')
+            ->can('download', 'file');
     }
 );
 

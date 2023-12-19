@@ -6,7 +6,7 @@
                     {{ __('My Drive') }}
                 </h2>
                 @if($folder)
-                    <a href="{{ route('folders.show', ['folder' => $folder->parent_id]) }}" class="secondary-button">{{ __('Back') }}</a>
+                    <a href="{{ route('folders.show', ['folder' => $folder->parent_id]) }}" class="secondary-button" style="margin-left: 1rem">{{ __('Back') }}</a>
                 @endif
             </div>
         </div>
@@ -66,7 +66,7 @@
                                         <button onclick="openDeleteModal(event, '{{ route('files.destroy', ['file' => $row['id']]) }}', '{{ $row['name'] }}')" class="danger-button">
                                             {{ __('Delete') }}</button>
                                         <button onclick="openEditModal(event, '{{ route('dashboard') }}', '{{ $row['name'] }}')" class="secondary-button">{{ __('Edit') }}</button>
-                                        <button class="success-button">{{ __('Download') }}</button>
+                                        <a href="{{ route('files.download', ['file' => $row['id']]) }}" class="success-button">{{ __('Download') }}</a>
                                     @endif
                                 </td>
                             </tr>

@@ -28,8 +28,18 @@ class File extends Model
         return $this->belongsTo(FileType::class, 'type_id', 'id');
     }
 
+    public function getFileTypeName(): string
+    {
+        return $this->file_type->type;
+    }
+
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class, 'file_tag', 'file_id', 'tag_id');
+    }
+
+    public function getFilePath(File $file): string
+    {
+        return 'files/' . $file->user_id . '/' . $file->id . "." . $file->getFileTypeName();
     }
 }

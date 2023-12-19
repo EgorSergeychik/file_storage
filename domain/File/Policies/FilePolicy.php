@@ -62,4 +62,9 @@ class FilePolicy
     {
         //
     }
+
+    public function download(User $user, File $file)
+    {
+        return $user->id === $file->user_id;
+    }
 }
