@@ -41,7 +41,7 @@ class FolderPolicy
      */
     public function update(User $user, Folder $folder): bool
     {
-        //
+        return $user->id === $folder->user_id;
     }
 
     /**

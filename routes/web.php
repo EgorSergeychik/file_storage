@@ -34,6 +34,8 @@ Route::group(
             ->can('view', [Folder::class, 'folder']);
         Route::delete('/{folder}', \Domain\Folder\Controllers\DeleteFolderController::class)->name('destroy')
             ->can('delete', 'folder');
+        Route::put('/{folder}', \Domain\Folder\Controllers\UpdateFolderController::class)->name('update')
+            ->can('update', 'folder');
     }
 );
 
@@ -44,7 +46,6 @@ Route::group(
         'middleware' => ['auth', 'verified'],
     ],
     function () {
-        Route::get('/{file}', function () {})->name('show');
         Route::delete('/{file}', \Domain\File\Controllers\DeleteFileController::class)->name('destroy')
             ->can('delete', 'file');
         Route::post('/files/upload', \Domain\File\Controllers\UploadFileController::class)->name('upload');

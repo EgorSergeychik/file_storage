@@ -61,7 +61,11 @@
                                     @if($row['type'] == 'Folder')
                                         <button onclick="openDeleteModal(event, '{{ route('folders.destroy', ['folder' => $row['id']]) }}', '{{ $row['name'] }}')" class="button danger">
                                             {{ __('Delete') }}</button>
-                                        <button onclick="openEditModal(event, '{{ route('dashboard') }}', '{{ $row['name'] }}')" class="button secondary">{{ __('Edit') }}</button>
+                                        <button onclick="openEditModal(event,
+                                                                        '{{ route('folders.update', ['folder' => $row['id']]) }}',
+                                                                        '{{ $row['name'] }}',
+                                                                        '{{ $row['id'] }}')"
+                                                class="button secondary">{{ __('Edit') }}</button>
                                     @else
                                         <button onclick="openDeleteModal(event, '{{ route('files.destroy', ['file' => $row['id']]) }}', '{{ $row['name'] }}')" class="button danger">
                                             {{ __('Delete') }}</button>
@@ -84,6 +88,7 @@
 </x-app-layout>
 
 @include('modals.delete-modal')
+@include('modals.update-modal')
 
 <button id="uploadButton" class="upload-button">+</button>
 <form action="{{ route('files.upload') }}" method="POST" enctype="multipart/form-data" class="upload-form">
@@ -92,18 +97,3 @@
     <input type="hidden" name="folder_id" value="{{ $folder->id ?? null }}">
     <button type="submit" class="button success">{{ __('Upload') }}</button>
 </form>
-
-<!-- Модальное окно для изменения -->
-{{--<div id="editModal" class="modal hidden">--}}
-{{--    <div class="modal-content">--}}
-{{--        <form action="" method="POST">--}}
-{{--            @csrf--}}
-{{--            @method('PUT')--}}
-
-{{--            <input name="name" value="{{ __("<File name>")  }}">--}}
-
-{{--            <button type="submit">Сохранить</button>--}}
-{{--            <button type="button" onclick="closeModal()">Отмена</button>--}}
-{{--        </form>--}}
-{{--    </div>--}}
-{{--</div>--}}

@@ -13,11 +13,12 @@ window.openDeleteModal = function(event, deleteUrl, name) {
     document.getElementById('deleteModal').classList.remove('hidden');
 }
 
-window.openEditModal = function(event, editUrl, fileName) {
+window.openEditModal = function(event, editUrl, name, id) {
     event.preventDefault();
     const editModal = document.getElementById('editModal');
     editModal.querySelector('form').action = editUrl;
-    editModal.querySelector('input[name="name"]').value = fileName;
+    editModal.querySelector('input[name="name"]').value = name;
+    editModal.querySelector('input[name="folder_id"]').value = id;
     editModal.classList.remove('hidden');
 }
 
