@@ -32,6 +32,7 @@ class DownloadFileController extends Controller
 
         return Response::download(
             Storage::disk('local')->path($file_path),
+            $file->name . '.' . $file->getFileTypeName()
         );
     }
 }
