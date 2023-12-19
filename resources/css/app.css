@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.primary-button, .secondary-button, .danger-button, .success-button {
+.button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -18,41 +18,43 @@
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
-.primary-button {
+/* Button subclasses */
+.button.primary {
     background-color: #3b82f6;
 }
 
-.primary-button:hover {
+.button.primary:hover {
     background-color: #2563eb;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
-.secondary-button {
+.button.secondary {
     background-color: #818CF8;
 }
 
-.secondary-button:hover {
+.button.secondary:hover {
     background-color: #6366F1;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
-.danger-button {
+.button.danger {
     background-color: #F87171;
 }
 
-.danger-button:hover {
+.button.danger:hover {
     background-color: #EF4444;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
-.success-button {
+.button.success {
     background-color: #34D399;
 }
 
-.success-button:hover {
+.button.success:hover {
     background-color: #10B981;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
+
 
 .flex.items-center {
     align-items: center;

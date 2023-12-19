@@ -6,7 +6,7 @@
                     {{ __('My Drive') }}
                 </h2>
                 @if($folder)
-                    <a href="{{ route('folders.show', ['folder' => $folder->parent_id]) }}" class="secondary-button" style="margin-left: 1rem">{{ __('Back') }}</a>
+                    <a href="{{ route('folders.show', ['folder' => $folder->parent_id]) }}" class="button secondary" style="margin-left: 1rem">{{ __('Back') }}</a>
                 @endif
             </div>
         </div>
@@ -59,14 +59,14 @@
                                 @endforeach
                                 <td class="border px-4 py-2">
                                     @if($row['type'] == 'Folder')
-                                        <button onclick="openDeleteModal(event, '{{ route('folders.destroy', ['folder' => $row['id']]) }}', '{{ $row['name'] }}')" class="danger-button">
+                                        <button onclick="openDeleteModal(event, '{{ route('folders.destroy', ['folder' => $row['id']]) }}', '{{ $row['name'] }}')" class="button danger">
                                             {{ __('Delete') }}</button>
-                                        <button onclick="openEditModal(event, '{{ route('dashboard') }}', '{{ $row['name'] }}')" class="secondary-button">{{ __('Edit') }}</button>
+                                        <button onclick="openEditModal(event, '{{ route('dashboard') }}', '{{ $row['name'] }}')" class="button secondary">{{ __('Edit') }}</button>
                                     @else
-                                        <button onclick="openDeleteModal(event, '{{ route('files.destroy', ['file' => $row['id']]) }}', '{{ $row['name'] }}')" class="danger-button">
+                                        <button onclick="openDeleteModal(event, '{{ route('files.destroy', ['file' => $row['id']]) }}', '{{ $row['name'] }}')" class="button danger">
                                             {{ __('Delete') }}</button>
-                                        <button onclick="openEditModal(event, '{{ route('dashboard') }}', '{{ $row['name'] }}')" class="secondary-button">{{ __('Edit') }}</button>
-                                        <a href="{{ route('files.download', ['file' => $row['id']]) }}" class="success-button">{{ __('Download') }}</a>
+                                        <button onclick="openEditModal(event, '{{ route('dashboard') }}', '{{ $row['name'] }}')" class="button secondary">{{ __('Edit') }}</button>
+                                        <a href="{{ route('files.download', ['file' => $row['id']]) }}" class="button success">{{ __('Download') }}</a>
                                     @endif
                                 </td>
                             </tr>

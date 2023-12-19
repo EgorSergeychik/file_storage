@@ -7,8 +7,8 @@
 
                 <p>{{ __('Are you sure you want to delete the') }} <code id="deleteName"></code>?<p>
 
-                    <button type="submit" class="danger-button">{{ __('Delete') }}</button>
-                    <button type="button" onclick="closeModal()" class="primary-button">{{ __('Cancel') }}</button>
+                    <button type="submit" class="button danger">{{ __('Delete') }}</button>
+                    <button type="button" onclick="closeModal()" class="button primary">{{ __('Cancel') }}</button>
             </form>
         </div>
     </div>
