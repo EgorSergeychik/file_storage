@@ -2,7 +2,7 @@
 
 namespace Domain\File\DTO;
 
-use Domain\File\Models\File;
+use Domain\Folder\Models\Folder;
 use Illuminate\Http\UploadedFile;
 use Spatie\LaravelData\Data;
 
@@ -10,7 +10,7 @@ class UploadFileData extends Data
 {
     public function __construct(
         public UploadedFile $file,
-        public ?File $folder,
+        public ?Folder $folder,
     ) {
     }
 

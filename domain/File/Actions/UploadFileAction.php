@@ -39,7 +39,7 @@ class UploadFileAction
             return true;
         } catch (\Exception $e) {
             DB::rollBack();
-            throw $e;
+            return false;
         }
     }
 }
