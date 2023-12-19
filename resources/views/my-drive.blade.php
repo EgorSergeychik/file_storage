@@ -90,10 +90,20 @@
 @include('modals.delete-modal')
 @include('modals.update-modal')
 
-<button id="uploadButton" class="upload-button">+</button>
-<form action="{{ route('files.upload') }}" method="POST" enctype="multipart/form-data" class="upload-form">
-    @csrf
-    <input type="file" name="file" required class="input-file">
-    <input type="hidden" name="folder_id" value="{{ $folder->id ?? null }}">
-    <button type="submit" class="button success">{{ __('Upload') }}</button>
-</form>
+<div class="command-button" id="commandButton">
+    +
+</div>
+
+<div class="command-menu" id="commandMenu">
+    <button data-action="upload_file" action-form="upload_form">{{ __('Upload file') }}</button>
+    <button data-action="new_folder">{{ __('New folder') }}</button>
+</div>
+
+<div class="form-container" id="upload_form">
+    <form action="{{ route('files.upload') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="file" required class="input-file">
+        <input type="hidden" name="folder_id" value="{{ $folder->id ?? null }}">
+        <button type="submit" class="button success">{{ __('Upload') }}</button>
+    </form>
+</div>

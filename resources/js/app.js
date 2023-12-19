@@ -52,11 +52,45 @@ window.onload = function() {
     displayPopups(successPopups, closeSuccessButtons);
 };
 
-document.getElementById('uploadButton').addEventListener('click', function() {
-    var form = document.querySelector('.upload-form');
-    if (form.style.display === 'block') {
-        form.style.display = 'none';
-    } else {
-        form.style.display = 'block';
+document.addEventListener('DOMContentLoaded', function () {
+    var commandButton = document.getElementById('commandButton');
+    var commandMenu = document.getElementById('commandMenu');
+    var formContainerList = document.querySelectorAll('.form-container');
+
+    if (commandButton && commandMenu && formContainerList.length > 0) {
+        commandButton.addEventListener('click', function () {
+            if (commandMenu.style.display === 'block') {
+                formContainerList.forEach(function (formContainer) {
+                    formContainer.style.display = 'none';
+                });
+            }
+
+            commandMenu.style.display = (commandMenu.style.display === 'block') ? 'none' : 'block';
+        });
+
+        var menuButtons = commandMenu.querySelectorAll('button');
+        menuButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var action = button.getAttribute('data-action');
+                var form_id = button.getAttribute('action-form');
+                var form = document.getElementById(form_id);
+
+                performAction(action, form);
+
+            });
+        });
+
+        function performAction(action, form) {
+            switch (action) {
+                case 'upload_file':
+                    form.style.display = (form.style.display === 'block') ? 'none' : 'block';
+
+                    break;
+                case 'new_folder':
+                    alert('clicked');
+                    break;
+            }
+        }
     }
 });
+
