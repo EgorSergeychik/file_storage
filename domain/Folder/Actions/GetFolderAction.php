@@ -28,7 +28,7 @@ class GetFolderAction
 
         $column_mapping = [
             'Name' => 'name',
-            'Type' => 'type_id',
+            'Type' => 'file_types.type',
             'Size' => 'size',
             'Created At' => 'created_at',
             'Updated At' => 'updated_at',
@@ -36,8 +36,12 @@ class GetFolderAction
 
         $sort_by = $column_mapping[$sort_by] ?? 'created_at';
 
+        if ($sort_by == 'file_types.type') {
+            $files_query->join('file_types', 'file_types.id', '=', 'files.type_id');
+        }
         $files_query->orderBy($sort_by, $sort_direction);
-        if (!in_array($sort_by, ['type_id', 'size'])) {
+
+        if (!in_array($sort_by, ['file_types.type', 'size'])) {
             $folders_query->orderBy($sort_by, $sort_direction);
         }
 
