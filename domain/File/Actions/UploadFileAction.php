@@ -33,7 +33,6 @@ class UploadFileAction
             ]);
 
             $path = $data->file->storeAs('files'.DIRECTORY_SEPARATOR.auth()->user()->id, $file->id.'.'.$file_type);
-            ray($path);
 
             DB::commit();
             return true;

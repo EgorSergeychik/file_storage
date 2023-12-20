@@ -38,7 +38,18 @@
                         <thead>
                         <tr>
                             @foreach($columns as $column)
-                                <th class="px-4 py-2">{{ __($column) }}</th>
+                                <th class="px-4 py-2">
+                                    <a href="{{ request()->fullUrlWithQuery(['sort_by' => $column, 'sort_direction' => request('sort_direction') == 'asc' ? 'desc' : 'asc']) }}">
+                                        {{ __($column) }}
+                                        @if(request('sort_by') == $column)
+                                            @if(request('sort_direction') == 'asc')
+                                                &#8593;
+                                            @else
+                                                &#8595;
+                                            @endif
+                                        @endif
+                                    </a>
+                                </th>
                             @endforeach
                             <th class="px-4 py-2"></th>
                         </tr>

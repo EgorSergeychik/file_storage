@@ -11,6 +11,7 @@ class GetFolderAction
     {
         $folder = $data->folder;
 
+        // load all files and folders for the current user
         $files_query = auth()->user()->files()->with(['file_type', 'tags']);
         $folders_query = auth()->user()->folders();
         if ($folder) {
@@ -20,6 +21,27 @@ class GetFolderAction
             $files_query->whereNull('folder_id');
             $folders_query->whereNull('parent_id');
         }
+
+        // sort files and foldes
+        $sort_by = request('sort_by', 'created_at');
+        $sort_direction = request('sort_direction', 'asc');
+
+        $column_mapping = [
+            'Name' => 'name',
+            'Type' => 'type_id',
+            'Size' => 'size',
+            'Created At' => 'created_at',
+            'Updated At' => 'updated_at',
+        ];
+
+        $sort_by = $column_mapping[$sort_by] ?? 'created_at';
+
+        $files_query->orderBy($sort_by, $sort_direction);
+        if (!in_array($sort_by, ['type_id', 'size'])) {
+            $folders_query->orderBy($sort_by, $sort_direction);
+        }
+
+        // get files and folders and prepare data for the table
 
         $files = $files_query->get();
         $folders = $folders_query->get();
