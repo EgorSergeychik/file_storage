@@ -2,6 +2,7 @@
 
 namespace Domain\File\Actions;
 
+use App\Support\Helpers\Help;
 use Domain\File\DTO\DeleteFileData;
 use Domain\File\DTO\UploadFileData;
 use Domain\File\Models\File;
@@ -15,14 +16,7 @@ class UploadFileAction
         try {
             DB::beginTransaction();
             $file_type = $data->file->getClientOriginalExtension();
-
-            if (!FileType::where('type', $file_type)->exists()) {
-                FileType::create([
-                    'type' => $file_type,
-                    'display_name' => $file_type,
-                ]);
-            }
-            $type = FileType::where('type', $file_type)->first();
+            $type = Help::findOrCreateFileType($file_type);
 
             $file = File::create([
                 'user_id' => auth()->user()->id,

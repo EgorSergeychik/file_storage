@@ -75,12 +75,18 @@
                                         <button onclick="openEditModal(event,
                                                                         '{{ route('folders.update', ['folder' => $row['id']]) }}',
                                                                         '{{ $row['name'] }}',
-                                                                        '{{ $row['id'] }}')"
+                                                                        '{{ $row['id'] }}',
+                                                                        'folder')"
                                                 class="button secondary">{{ __('Edit') }}</button>
                                     @else
                                         <button onclick="openDeleteModal(event, '{{ route('files.destroy', ['file' => $row['id']]) }}', '{{ $row['name'] }}')" class="button danger">
                                             {{ __('Delete') }}</button>
-                                        <button onclick="openEditModal(event, '{{ route('dashboard') }}', '{{ $row['name'] }}')" class="button secondary">{{ __('Edit') }}</button>
+                                        <button onclick="openEditModal(event,
+                                                                      '{{ route('files.update', ['file' => $row['id']]) }}',
+                                                                      '{{ $row['name'] }}',
+                                                                      '{{ $row['id'] }}',
+                                                                      'file')"
+                                                class="button secondary">{{ __('Edit') }}</button>
                                         <a href="{{ route('files.download', ['file' => $row['id']]) }}" class="button success">{{ __('Download') }}</a>
                                     @endif
                                 </td>

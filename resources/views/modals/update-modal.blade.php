@@ -6,7 +6,7 @@
                 @method('PUT')
 
                 <input type="text" name="name" value="">
-                <input type="hidden" name="folder_id" value="">
+                <input id="obj_id" type="hidden" name="" value="">
 
                 <button type="submit" class="button success">Сохранить</button>
                 <button type="button" onclick="closeModal()" class="button primary">Отмена</button>

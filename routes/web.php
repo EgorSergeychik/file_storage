@@ -52,6 +52,8 @@ Route::group(
         Route::post('/upload', \Domain\File\Controllers\UploadFileController::class)->name('upload');
         Route::get('/{file}/download', \Domain\File\Controllers\DownloadFileController::class)->name('download')
             ->can('download', 'file');
+        Route::put('/{file}', \Domain\File\Controllers\UpdateFileController::class)->name('update')
+            ->can('update', 'file');
     }
 );
 

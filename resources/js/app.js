@@ -13,12 +13,20 @@ window.openDeleteModal = function(event, deleteUrl, name) {
     document.getElementById('deleteModal').classList.remove('hidden');
 }
 
-window.openEditModal = function(event, editUrl, name, id) {
+window.openEditModal = function(event, editUrl, name, id, type) {
     event.preventDefault();
     const editModal = document.getElementById('editModal');
     editModal.querySelector('form').action = editUrl;
     editModal.querySelector('input[name="name"]').value = name;
-    editModal.querySelector('input[name="folder_id"]').value = id;
+
+    var obj_input = editModal.querySelector('#obj_id');
+    if (type === 'folder') {
+        obj_input.name = 'folder_id';
+    } else if (type === 'file') {
+        obj_input.name = 'file_id';
+    }
+
+    obj_input.value = id;
     editModal.classList.remove('hidden');
 }
 

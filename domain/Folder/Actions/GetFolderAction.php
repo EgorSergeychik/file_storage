@@ -22,7 +22,7 @@ class GetFolderAction
             $folders_query->whereNull('parent_id');
         }
 
-        // sort files and foldes
+        // sort files and folders
         $sort_by = request('sort_by', 'created_at');
         $sort_direction = request('sort_direction', 'asc');
 
