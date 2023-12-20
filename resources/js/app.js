@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
         menuButtons.forEach(function (button) {
             button.addEventListener('click', function () {
                 var action = button.getAttribute('data-action');
-                var form_id = button.getAttribute('action-form');
+                var form_id = button.getAttribute('data-form');
                 var form = document.getElementById(form_id);
 
                 performAction(action, form);
@@ -88,7 +88,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     break;
                 case 'new_folder':
-                    alert('clicked');
+                    form.style.display = (form.style.display === 'block') ? 'none' : 'block';
+                    calculateAndSetFormPosition(form);
+
                     break;
             }
         }

@@ -95,8 +95,8 @@
 </div>
 
 <div class="command-menu" id="commandMenu">
-    <button data-action="upload_file" action-form="upload_form">{{ __('Upload file') }}</button>
-    <button data-action="new_folder">{{ __('New folder') }}</button>
+    <button data-action="upload_file" data-form="upload_form">{{ __('Upload file') }}</button>
+    <button data-action="new_folder" data-form="new_folder_form">{{ __('New folder') }}</button>
 </div>
 
 <div class="form-container" id="upload_form">
@@ -105,5 +105,14 @@
         <input type="file" name="file" required class="input-file">
         <input type="hidden" name="folder_id" value="{{ $folder->id ?? null }}">
         <button type="submit" class="button success">{{ __('Upload') }}</button>
+    </form>
+</div>
+
+<div class="form-container" id="new_folder_form">
+    <form action="{{ route('folders.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="text" name="name" required placeholder="{{ __('New Folder') }}" >
+        <input type="hidden" name="folder_id" value="{{ $folder->id ?? null }}">
+        <button type="submit" class="button success">{{ __('Create') }}</button>
     </form>
 </div>

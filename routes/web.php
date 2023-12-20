@@ -30,6 +30,7 @@ Route::group(
         'middleware' => ['auth', 'verified'],
     ],
     function () {
+        Route::post('/', \Domain\Folder\Controllers\CreateFolderController::class)->name('store');
         Route::get('/{folder?}', \Domain\Folder\Controllers\GetFolderController::class)->name('show')
             ->can('view', [Folder::class, 'folder']);
         Route::delete('/{folder}', \Domain\Folder\Controllers\DeleteFolderController::class)->name('destroy')
