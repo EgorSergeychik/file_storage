@@ -30,9 +30,19 @@ window.openEditModal = function(event, editUrl, name, id, type) {
     editModal.classList.remove('hidden');
 }
 
+window.openShareModal = function(event, shareUrl, name, id) {
+    event.preventDefault();
+    document.getElementById('shareModal').querySelector('form').action = shareUrl;
+    document.getElementById('shareName').textContent = name;
+    document.getElementById('shareId').value = id;
+
+    document.getElementById('shareModal').classList.remove('hidden');
+}
+
 window.closeModal = function() {
     document.getElementById('deleteModal').classList.add('hidden');
     document.getElementById('editModal').classList.add('hidden');
+    document.getElementById('shareModal').classList.add('hidden');
 }
 
 window.onload = function() {

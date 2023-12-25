@@ -54,6 +54,7 @@ Route::group(
             ->can('download', 'file');
         Route::put('/{file}', \Domain\File\Controllers\UpdateFileController::class)->name('update')
             ->can('update', 'file');
+        Route::post('/share', \Domain\File\Controllers\ShareFileController::class)->name('share');
     }
 );
 

@@ -4,6 +4,7 @@ namespace Domain\File\Models;
 
 use Domain\FileType\Models\FileType;
 use Domain\Tag\Models\Tag;
+use Domain\User\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -41,5 +42,10 @@ class File extends Model
     public function getFilePath(File $file): string
     {
         return 'files/' . $file->user_id . '/' . $file->id . "." . $file->getFileTypeName();
+    }
+
+    public function shared_with(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'shared_files', 'file_id', 'user_id');
     }
 }

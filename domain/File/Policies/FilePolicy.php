@@ -67,4 +67,9 @@ class FilePolicy
     {
         return $user->id === $file->user_id;
     }
+
+    public function share(User $user, File $file): bool
+    {
+        return $user->id === $file->user_id;
+    }
 }

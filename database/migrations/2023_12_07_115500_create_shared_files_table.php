@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('file_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->timestamp('shared_at');
             $table->unique(['file_id', 'user_id']);
             $table->timestamps();
         });

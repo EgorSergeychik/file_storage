@@ -3,11 +3,8 @@
         <div class="flex justify-between">
             <div class="flex items-center">
                 <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                    {{ __('My Drive') }}
+                    {{ __('Shared Files') }}
                 </h2>
-                @if($folder)
-                    <a href="{{ route('folders.show', ['folder' => $folder->parent_id]) }}" class="button secondary" style="margin-left: 1rem">{{ __('Back') }}</a>
-                @endif
             </div>
         </div>
     </x-slot>
@@ -88,11 +85,6 @@
                                                                       'file')"
                                                 class="button secondary">{{ __('Edit') }}</button>
                                         <a href="{{ route('files.download', ['file' => $row['id']]) }}" class="button success">{{ __('Download') }}</a>
-                                        <button onclick="openShareModal(event,
-                                                                       '{{ route('files.share') }}',
-                                                                       '{{ $row['name'] }}',
-                                                                       '{{ $row['id'] }}')"
-                                                class="button primary">&#128227;</button>
                                     @endif
                                 </td>
                             </tr>
@@ -111,7 +103,6 @@
 
 @include('modals.delete-modal')
 @include('modals.update-modal')
-@include('modals.share-modal')
 
 <div class="command-button" id="commandButton">
     +
