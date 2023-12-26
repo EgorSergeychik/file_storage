@@ -23,7 +23,7 @@ class ShareFileController extends Controller
     ) {
     }
 
-    public function __invoke(ShareFileRequest $request)
+    public function __invoke(ShareFileRequest $request, File $file)
     {
         $data = ShareFileData::fromRequest($request);
 

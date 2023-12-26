@@ -254,3 +254,9 @@
 .input-file {
     color: #fff;
 }
+
+.table-container {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 80vh;
+}

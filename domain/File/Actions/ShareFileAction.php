@@ -15,7 +15,7 @@ class ShareFileAction
             $file = $data->file;
             $user = $data->user;
 
-            $file->shared_with()->attach($user);
+            $file->shared_with()->attach($user, ['created_at' => now()]);
 
             DB::commit();
             return true;

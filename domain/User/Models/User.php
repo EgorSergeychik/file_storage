@@ -68,8 +68,8 @@ class User extends Authenticatable
         return $this->belongsToMany(File::class, 'shared_files', 'user_id', 'file_id');
     }
 
-    public function sharing_files(): BelongsToMany
+    public function sharing_files(): HasMany
     {
-        return $this->belongsToMany(File::class, 'shared_files', 'user_id', 'file_id')->withPivot('user_id');
+        return $this->files()->whereHas('shared_with');
     }
 }

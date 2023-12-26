@@ -34,75 +34,77 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <table class="table-auto w-full">
-                        <thead>
-                        <tr>
-                            @foreach($columns as $column)
-                                <th class="px-4 py-2">
-                                    <a href="{{ request()->fullUrlWithQuery(['sort_by' => $column, 'sort_direction' => request('sort_direction') == 'asc' ? 'desc' : 'asc']) }}">
-                                        {{ __($column) }}
-                                        @if(request('sort_by') == $column)
-                                            @if(request('sort_direction') == 'asc')
-                                                &#8593;
-                                            @else
-                                                &#8595;
-                                            @endif
-                                        @endif
-                                    </a>
-                                </th>
-                            @endforeach
-                            <th class="px-4 py-2"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @forelse($rows as $row)
+                    <div class="table-container">
+                        <table class="table-auto w-full">
+                            <thead>
                             <tr>
-                                @foreach($row as $key => $cell)
-                                    @if($key == 'name' and $row['type'] == 'Folder')
-                                        <td class="border px-4 py-2">
-                                            <a href="{{ route('folders.show', ['folder' => $row['id']]) }}" class="folder-name">📁 {{ $cell }}</a>
-                                        </td>
-                                        @continue
-                                    @endif
-                                    @if($key != 'id')
-                                        <td class="border px-4 py-2">{{ $cell }}</td>
-                                    @endif
+                                @foreach($columns as $column)
+                                    <th class="px-4 py-2">
+                                        <a href="{{ request()->fullUrlWithQuery(['sort_by' => $column, 'sort_direction' => request('sort_direction') == 'asc' ? 'desc' : 'asc']) }}">
+                                            {{ __($column) }}
+                                            @if(request('sort_by') == $column)
+                                                @if(request('sort_direction') == 'asc')
+                                                    &#8593;
+                                                @else
+                                                    &#8595;
+                                                @endif
+                                            @endif
+                                        </a>
+                                    </th>
                                 @endforeach
-                                <td class="border px-4 py-2">
-                                    @if($row['type'] == 'Folder')
-                                        <button onclick="openDeleteModal(event, '{{ route('folders.destroy', ['folder' => $row['id']]) }}', '{{ $row['name'] }}')" class="button danger">
-                                            {{ __('Delete') }}</button>
-                                        <button onclick="openEditModal(event,
+                                <th class="px-4 py-2"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @forelse($rows as $row)
+                                <tr>
+                                    @foreach($row as $key => $cell)
+                                        @if($key == 'name' and $row['type'] == 'Folder')
+                                            <td class="border px-4 py-2">
+                                                <a href="{{ route('folders.show', ['folder' => $row['id']]) }}" class="folder-name">📁 {{ $cell }}</a>
+                                            </td>
+                                            @continue
+                                        @endif
+                                        @if($key != 'id')
+                                            <td class="border px-4 py-2">{{ $cell }}</td>
+                                        @endif
+                                    @endforeach
+                                    <td class="border px-4 py-2">
+                                        @if($row['type'] == 'Folder')
+                                            <button onclick="openDeleteModal(event, '{{ route('folders.destroy', ['folder' => $row['id']]) }}', '{{ $row['name'] }}')" class="button danger">
+                                                {{ __('Delete') }}</button>
+                                            <button onclick="openEditModal(event,
                                                                         '{{ route('folders.update', ['folder' => $row['id']]) }}',
                                                                         '{{ $row['name'] }}',
                                                                         '{{ $row['id'] }}',
                                                                         'folder')"
-                                                class="button secondary">{{ __('Edit') }}</button>
-                                    @else
-                                        <button onclick="openDeleteModal(event, '{{ route('files.destroy', ['file' => $row['id']]) }}', '{{ $row['name'] }}')" class="button danger">
-                                            {{ __('Delete') }}</button>
-                                        <button onclick="openEditModal(event,
+                                                    class="button secondary">{{ __('Edit') }}</button>
+                                        @else
+                                            <button onclick="openDeleteModal(event, '{{ route('files.destroy', ['file' => $row['id']]) }}', '{{ $row['name'] }}')" class="button danger">
+                                                {{ __('Delete') }}</button>
+                                            <button onclick="openEditModal(event,
                                                                       '{{ route('files.update', ['file' => $row['id']]) }}',
                                                                       '{{ $row['name'] }}',
                                                                       '{{ $row['id'] }}',
                                                                       'file')"
-                                                class="button secondary">{{ __('Edit') }}</button>
-                                        <a href="{{ route('files.download', ['file' => $row['id']]) }}" class="button success">{{ __('Download') }}</a>
-                                        <button onclick="openShareModal(event,
-                                                                       '{{ route('files.share') }}',
+                                                    class="button secondary">{{ __('Edit') }}</button>
+                                            <a href="{{ route('files.download', ['file' => $row['id']]) }}" class="button success">{{ __('Download') }}</a>
+                                            <button onclick="openShareModal(event,
+                                                                       '{{ route('files.share', ['file' => $row['id']]) }}',
                                                                        '{{ $row['name'] }}',
                                                                        '{{ $row['id'] }}')"
-                                                class="button primary">&#128227;</button>
-                                    @endif
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td class="border px-4 py-2" colspan="{{ count($columns) }}">{{ __("There are no files here.") }}</td>
-                            </tr>
-                        @endforelse
-                        </tbody>
-                    </table>
+                                                    class="button primary">&#128227;</button>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td class="border px-4 py-2" colspan="{{ count($columns) }}">{{ __("There are no files here.") }}</td>
+                                </tr>
+                            @endforelse
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
