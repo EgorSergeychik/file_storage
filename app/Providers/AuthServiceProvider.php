@@ -5,8 +5,10 @@ namespace App\Providers;
 // use Illuminate\Support\Facades\Gate;
 use Domain\File\Models\File;
 use Domain\File\Policies\FilePolicy;
+use Domain\File\Policies\SharedFilePolicy;
 use Domain\Folder\Models\Folder;
 use Domain\Folder\Policies\FolderPolicy;
+use Domain\SharedFile\Models\SharedFile;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -19,6 +21,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         Folder::class => FolderPolicy::class,
         File::class => FilePolicy::class,
+        SharedFile::class => FilePolicy::class,
     ];
 
     /**

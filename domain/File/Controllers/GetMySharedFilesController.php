@@ -16,7 +16,7 @@ class GetMySharedFilesController extends Controller
     public function __invoke(FormRequest $request)
     {
         $sharing_with_data = $this->getMySharedFilesAction->__invoke();
-        ray($sharing_with_data);
+
         return $sharing_with_data;
     }
 }

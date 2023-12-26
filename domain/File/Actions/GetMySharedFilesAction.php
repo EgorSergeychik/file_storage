@@ -18,10 +18,10 @@ class GetMySharedFilesAction
         foreach ($files as $f) {
             foreach ($f->shared_with as $shared_with) {
                 $rows[] = [
-                    'id' => $f->id,
+                    'pivot_id' => $shared_with->pivot->id,
                     'name' => $f->name  . '.' . $f->file_type->type,
                     'email' => $shared_with->email,
-                    'shared_at' => $shared_with->pivot->created_at,
+                    'shared_at' => $shared_with->pivot->created_at->format('Y-m-d H:i:s'),
                 ];
             }
         }

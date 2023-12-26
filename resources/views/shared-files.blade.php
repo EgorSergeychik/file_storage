@@ -6,13 +6,13 @@
                     {{ __('Shared Files') }}
                 </h2>
             </div>
-            <div class="flex items-center justify-between">
-                <span>Shared with me</span>
+            <div class="flex items-center justify-between text-gray-900 dark:text-gray-100">
+                <span>{{ __('Shared with me') }}</span>
                 <div class="relative inline-block w-10 ml-2 align-middle select-none transition duration-200 ease-in">
                     <input type="checkbox" name="toggle" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
                     <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
                 </div>
-                <span>I'm sharing</span>
+                <span style="margin-left: 0.5rem">{{ __('I\'m sharing') }}</span>
             </div>
         </div>
     </x-slot>
@@ -87,13 +87,40 @@
                     });
                     // Add action button
                     let td = document.createElement('td');
-                    let a = document.createElement('a');
-                    a.textContent = this.checked ? 'Unshare' : 'Download';
-                    a.href = this.checked ? `/files/${row.id}/unshare` : `/files/${row.id}/download`;
-                    a.classList.add('button');
-                    a.classList.add(this.checked ? 'danger' : 'success');
+                    if (this.checked) {
+                        let form = document.createElement('form');
+                        form.method = "POST";
+                        form.action = `/files/${row.pivot_id}/unshare`;
+
+                        // Add method field
+                        let methodField = document.createElement('input');
+                        methodField.type = 'hidden';
+                        methodField.name = '_method';
+                        methodField.value = 'DELETE';
+                        form.appendChild(methodField);
+
+                        // Add CSRF token
+                        let csrfField = document.createElement('input');
+                        csrfField.type = 'hidden';
+                        csrfField.name = '_token';
+                        csrfField.value = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                        form.appendChild(csrfField);
+
+                        let button = document.createElement('button');
+                        button.textContent = 'Unshare';
+                        button.classList.add('button', 'danger');
+                        form.appendChild(button);
+
+                        td.appendChild(form);
+                    } else {
+                        let a = document.createElement('a');
+                        a.textContent = 'Download';
+                        a.href = `/files/${row.id}/download`;
+                        a.classList.add('button', 'success');
+                        td.appendChild(a);
+                    }
+
                     td.className = "border px-4 py-2";
-                    td.appendChild(a);
                     tr.appendChild(td);
 
                     tbody.appendChild(tr);

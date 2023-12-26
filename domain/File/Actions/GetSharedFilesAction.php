@@ -20,7 +20,7 @@ class GetSharedFilesAction
                 'id' => $f->id,
                 'name' => $f->name . '.' . $f->file_type->type,
                 'owner' => $f->owner->email,
-                'shared_at' => $f->pivot->created_at,
+                'shared_at' => $f->pivot->created_at->format('Y-m-d H:i:s'),
             ];
         }
 

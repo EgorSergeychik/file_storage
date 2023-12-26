@@ -1,12 +1,12 @@
 <?php
 
-namespace Domain\File\Policies;
+namespace Domain\SharedFile\Policies;
 
 use Domain\File\Models\File;
 use Domain\SharedFile\Models\SharedFile;
 use Domain\User\Models\User;
 
-class FilePolicy
+class SharedFilePolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -37,7 +37,7 @@ class FilePolicy
      */
     public function update(User $user, File $file): bool
     {
-        return $user->id === $file->user_id;
+
     }
 
     /**
@@ -45,7 +45,7 @@ class FilePolicy
      */
     public function delete(User $user, File $file): bool
     {
-        return $user->id === $file->user_id;
+
     }
 
     /**
@@ -62,17 +62,6 @@ class FilePolicy
     public function forceDelete(User $user, File $file): bool
     {
         //
-    }
-
-    public function download(User $user, File $file): bool
-    {
-        return $user->id === $file->user_id
-            || $file->shared_with->contains($user);
-    }
-
-    public function share(User $user, File $file): bool
-    {
-        return $user->id === $file->user_id;
     }
 
     public function unshare(User $user, SharedFile $sharedFile): bool

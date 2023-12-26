@@ -52,6 +52,6 @@ class File extends Model
     public function shared_with(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'shared_files', 'file_id', 'user_id')
-            ->withPivot('created_at');
+            ->withPivot('created_at', 'id');
     }
 }
