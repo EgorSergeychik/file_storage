@@ -19,7 +19,7 @@ class GetMySharedFilesAction
             foreach ($f->shared_with as $shared_with) {
                 $rows[] = [
                     'id' => $f->id,
-                    'name' => $f->name,
+                    'name' => $f->name  . '.' . $f->file_type->type,
                     'email' => $shared_with->email,
                     'shared_at' => $shared_with->pivot->created_at,
                 ];

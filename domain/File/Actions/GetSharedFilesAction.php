@@ -12,12 +12,13 @@ class GetSharedFilesAction
         $user = auth()->user();
 
         $files = $user->shared_files()->with(['file_type', 'tags', 'owner'])->get();
-        ray($files);
+
         $columns = ['Name', 'Owner', 'Shared At'];
         $rows = [];
         foreach ($files as $f) {
             $rows[] = [
-                'name' => $f->name,
+                'id' => $f->id,
+                'name' => $f->name . '.' . $f->file_type->type,
                 'owner' => $f->owner->email,
                 'shared_at' => $f->pivot->created_at,
             ];

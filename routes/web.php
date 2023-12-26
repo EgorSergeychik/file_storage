@@ -23,6 +23,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/shared-files', function () {
+    return view('shared-files');
+})->middleware(['auth', 'verified'])->name('shared-files');
+
 Route::group(
     [
         'prefix' => 'folders',
