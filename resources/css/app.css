@@ -260,3 +260,41 @@
     overflow-y: auto;
     max-height: 80vh;
 }
+
+.toggle-checkbox:checked {
+    right: 0;
+    border-color: #68D391;
+    background-color: #3d905c;
+}
+
+.toggle-checkbox:checked + .toggle-label {
+    background-color: #68D391;
+}
+
+.toggle-checkbox:focus + .toggle-label,
+.toggle-checkbox:focus-visible + .toggle-label {
+    box-shadow: 0 0 1px 2px #68D391;
+}
+
+.toggle-checkbox:checked:focus + .toggle-label,
+.toggle-checkbox:checked:focus-visible + .toggle-label {
+    box-shadow: 0 0 1px 2px #68D391;
+}
+
+.toggle-checkbox:checked:hover + .toggle-label {
+    background-color: #48bb78;
+}
+
+.toggle-checkbox:checked:hover:focus + .toggle-label,
+.toggle-checkbox:checked:hover:focus-visible + .toggle-label {
+    box-shadow: 0 0 1px 2px #48bb78;
+}
+
+.toggle-checkbox:checked:active + .toggle-label {
+    background-color: #38a169;
+}
+
+.toggle-checkbox:checked:active:focus + .toggle-label,
+.toggle-checkbox:checked:active:focus-visible + .toggle-label {
+    box-shadow: 0 0 1px 2px #38a169;
+}

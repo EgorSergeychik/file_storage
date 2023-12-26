@@ -9,7 +9,7 @@
             <div class="flex items-center justify-between text-gray-900 dark:text-gray-100">
                 <span>{{ __('Shared with me') }}</span>
                 <div class="relative inline-block w-10 ml-2 align-middle select-none transition duration-200 ease-in">
-                    <input type="checkbox" name="toggle" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                    <input type="checkbox" name="toggle" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white"/>
                     <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
                 </div>
                 <span style="margin-left: 0.5rem">{{ __('I\'m sharing') }}</span>
