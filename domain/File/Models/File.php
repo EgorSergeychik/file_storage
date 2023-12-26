@@ -39,6 +39,11 @@ class File extends Model
         return $this->belongsToMany(Tag::class, 'file_tag', 'file_id', 'tag_id');
     }
 
+    public function owner(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
     public function getFilePath(File $file): string
     {
         return 'files/' . $file->user_id . '/' . $file->id . "." . $file->getFileTypeName();

@@ -4,19 +4,20 @@ namespace Domain\File\Controllers;
 
 use App\Http\Controllers\Controller;
 use Domain\File\Actions\GetMySharedFilesAction;
+use Domain\File\Actions\GetSharedFilesAction;
 use Illuminate\Foundation\Http\FormRequest;
 
-class GetMySharedFilesController extends Controller
+class GetSharedFilesController extends Controller
 {
     public function __construct(
-        private readonly GetMySharedFilesAction $getMySharedFilesAction,
+        private readonly GetSharedFilesAction $getSharedFilesAction,
     ) {
     }
 
     public function __invoke(FormRequest $request)
     {
-        $sharing_with_data = $this->getMySharedFilesAction->__invoke();
+        $shared_data = $this->getSharedFilesAction->__invoke();
 
-        return compact('sharing_with_data');
+        return compact('shared_data');
     }
 }

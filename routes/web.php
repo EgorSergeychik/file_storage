@@ -56,7 +56,8 @@ Route::group(
             ->can('update', 'file');
         Route::post('/{file}/share', \Domain\File\Controllers\ShareFileController::class)->name('share')
             ->can('share', 'file');
-        Route::get('/shared', \Domain\File\Controllers\GetMySharedFilesController::class)->name('shared');
+        Route::get('/sharing', \Domain\File\Controllers\GetMySharedFilesController::class)->name('sharing');
+        Route::get('/shared', \Domain\File\Controllers\GetSharedFilesController::class)->name('shared');
     }
 );
 

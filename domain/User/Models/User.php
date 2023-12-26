@@ -65,7 +65,8 @@ class User extends Authenticatable
 
     public function shared_files(): BelongsToMany
     {
-        return $this->belongsToMany(File::class, 'shared_files', 'user_id', 'file_id');
+        return $this->belongsToMany(File::class, 'shared_files', 'user_id', 'file_id')
+            ->withPivot('created_at');
     }
 
     public function sharing_files(): HasMany
